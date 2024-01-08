@@ -6,44 +6,59 @@ import {
   faCookieBite,
   faWineGlass,
   faCandyCane,
-  faUser
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
+import { Context } from "../App";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
+
 const Head = () => {
+  const { cart, setCart ,user} = useContext(Context);
+  
   return (
     <div className="nav">
       <h1 className="logo"></h1>
       <div className="nav-right">
-        <div>
+      <Link className="link"to={'food'}>
           <FontAwesomeIcon className="icon" icon={faBowlFood} />
           <p>Food</p>
-        </div>
-        <div>
-          <FontAwesomeIcon className="icon "icon={faCookieBite} />
+          </Link>
+        <Link className="link"to={'snacks'}>
+          <FontAwesomeIcon className="icon " icon={faCookieBite} />
           <p>Snacks</p>
-        </div>
-        <div>
-          <FontAwesomeIcon className="icon"icon={faWineGlass} />
+          </Link>
+        <Link className="link"to={'juice'}>
+          <FontAwesomeIcon className="icon" icon={faWineGlass} />
           <p>Juice</p>
-        </div>
-        <div>
-          <FontAwesomeIcon className="icon"icon={faCandyCane} />
+        </Link>
+        <Link className="link"to={'chocolate'}>
+       
+          <FontAwesomeIcon className="icon" icon={faCandyCane} />
           <p>Chocolate</p>
+          </Link>
+       
+        {user && (<div className="link">
+          <button>
+            <FontAwesomeIcon className="icon" icon={faRightFromBracket} />
+          </button>
+          <p>LogOut</p>
+        </div>)}
+        <div className="link">
+          <p className="user-name">
+            <FontAwesomeIcon className="user-icon" icon={faUser} />
+            {user?(user.name):''}
+          </p>
+          <p className="balance">Balance Rs:{user?(user.balance):''}/-</p>
+          
         </div>
-        <div>
-          <FontAwesomeIcon className="icon"icon={faCartShopping} />
-          <p>Cart</p>
-        </div>
-        <div>
-        <button>
-        <FontAwesomeIcon className="icon"icon={faRightFromBracket} />
-        </button>
-        <p>Logo</p>
-        </div>
-        <div>
-        <p className="user-name"><FontAwesomeIcon className="user-icon"icon={faUser} />Sam123</p>
-        </div>
-        
       </div>
+      {cart || (
+        <div className="nav-cart-icon" onClick={()=>{
+          cart?setCart(false):setCart(true);
+        }}>
+          <FontAwesomeIcon className="icon" icon={faCartShopping} />
+        </div>
+      )}
     </div>
   );
 };

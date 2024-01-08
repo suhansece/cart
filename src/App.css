@@ -22,6 +22,7 @@
     position:sticky;
     top:0;
     width: 100%;
+    z-index: 1;
 }
 .nav .logo{
     margin: 10px;
@@ -37,24 +38,26 @@
 .nav-right .icon{
     height: 20px;
 }
-.nav-right div .user-icon{
+.nav-right .link .user-icon{
     margin-right: 8px;
 }
-.nav-right div{
+.nav-right .link{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 80px;
+    text-decoration: none;
+    color: var(--white);
 }
-.nav-right div:hover{
+.nav-right .link:hover{
 background-color: black;
 }
-.nav-right div p{
+.nav-right .link p{
     font-size: 15px;
 }
-.nav-right div .user-name{
+.nav-right .link .user-name{
     font-size: 20px;
 }
 .nav-right button{
@@ -62,13 +65,31 @@ background-color: black;
     border: 0;
     color: var(--white);
 }
+.nav-cart-icon{
+    position: absolute;
+    top: 200px;
+    right: 0;
+    color: var(--white);
+    font-size: 30px;
+    height: 50px;
+    width: 70px;
+    border-radius:25px 0 0 25px;
+    background-color:var(--orange);
+    display: flex;
+    align-items: center;
+}
+.nav-cart-icon .icon{
+    margin-left: 10px;
+}
 .item-card{
     border: 0.5px solid rgb(211, 211, 62);
     margin: 10px;
     padding: 10px;
+    min-width: 200px;
     width: 200px;
     border-radius: 10px;
     margin-bottom: 50px;
+    text-wrap: wrap;
 }
 .item-card div p{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -86,11 +107,23 @@ background-color: black;
     border-radius: 7px;
     margin-top: 20px;
 }
+.veg-nonveg p img {
+   width: 20px;
+   border-radius: 0;
+}
+.veg-nonveg{
+    display: flex;
+    padding-bottom: 5px;
+}
 .body{
     display: flex;
-    justify-content:center ;
+    justify-content: space-between ;
     margin: 5px;
     padding: 10px;
+}
+.cart-div{
+   min-width: 550px;
+   margin-top: 30px;
 }
 .meanu-list{
     display: flex;
@@ -99,18 +132,18 @@ background-color: black;
     justify-content: space-around;
 }
 
-.items h1{
-    border-bottom: 1px solid black;
+.items h1,.itemss h1{
+    border-bottom: 5px solid var(--orange);
+    letter-spacing: 2px;
 }
 .cart{
-    width: 900px;
     padding: 10px;
     border: 5px solid var(--orange);
-    border-radius: 10px;
+    border-radius:0 10px;
     display: flex;
     flex-direction: column;
     height: fit-content;
-    
+    position: relative;
 }
 .cart h1{
     font-size: 20px;
@@ -155,7 +188,18 @@ background-color: black;
     background-color: var(--orange);
     font-size: large;
 }
-
+.cart-close-btn{
+    width: 100px; 
+    margin-left: 5%;
+    border-radius: 5px;
+    height: 30px;
+    border: 0;
+    background-color: var(--orange);
+    font-size: large;
+    color: var(--white);
+    position: absolute;
+    right: 30px;
+}
 .cart-item-card{
     display: flex;
     align-items: center;
@@ -213,7 +257,7 @@ max-width: 150px;
 .cart-del-price{
     display: flex;
     flex-direction: column;
-    width: 60px;
+    width: auto;
 }
 .cart-del-price button{
     border: 0;
@@ -221,6 +265,36 @@ max-width: 150px;
     font-size: larger;
     background-color: white;
     margin-bottom: 10px;
+}
+.error-msg{
+    color: red;
+}
+.balance{
+    font-size: 20px !important;
+}
+.home-body{
+    display: flex;
+    flex-direction: column;
+}
+
+.home-body .itemss .meanu-liste{
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: scroll;
+    white-space: nowrap;
+ 
+    overflow-y: overlay;
+}
+
+ .meanu-liste{
+   margin-left: 50px;
+}
+.home-body{
+    min-width: 60%;
+    width: auto;
+}
+.home-body .items h1{
+    text-wrap: wrap;
 }
 
 

@@ -10,11 +10,19 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Context } from "../App";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
+import cookie from "js-cookie";
+
 
 const Head = () => {
-  const { cart, setCart ,user} = useContext(Context);
-  
+  const { cart, setCart ,user,setUser} = useContext(Context);
+  const navigate=useNavigate();
+  const logout = ()=>{
+        cookie.remove("token");
+        setUser(null);
+        navigate("/login");
+        window.location.reload()
+  }
   return (
     <div className="nav">
       <h1 className="logo"></h1>
@@ -37,12 +45,18 @@ const Head = () => {
           <p>Chocolate</p>
           </Link>
        
-        {user && (<div className="link">
-          <button>
+        {user && (<div className="link" onClick={logout}>
+          <button >
             <FontAwesomeIcon className="icon" icon={faRightFromBracket} />
           </button>
           <p>LogOut</p>
         </div>)}
+        {user? (<></>) : (<Link to="/login"className="link">
+          <button >
+            <FontAwesomeIcon className="icon" icon={faRightFromBracket} />
+          </button>
+          <p>Login</p>
+        </Link>)}
         <div className="link">
           <p className="user-name">
             <FontAwesomeIcon className="user-icon" icon={faUser} />

@@ -28,7 +28,7 @@ const Homebody = () => {
       <div className="itemss">
         <h1>Snacks</h1>
         <div className="meanu-liste">
-          {products.filter((product)=>product.category==="snacks").map((product) => (
+          {products.filter((product)=>(product.category)=="snacks").map((product) => (
             <Itemcard key={product._id} data={product} />
           ))}
         </div>

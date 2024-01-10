@@ -7,11 +7,17 @@ import { Context } from "../App";
 const Body = (props) => {
   const [products, setProduct] = useState([]);
   const { cart } = useContext(Context);
+  const [search,setSearch]=useState('')
   const {datas}=props
   const fetchProduct = async () => {
     const data = await axios.get(`api/product/category/${datas}`);
     setProduct(data.data);
+    
   };
+  const searchProduct =(e)=>{
+      setSearch(e.target.value);
+      console.log(search)
+  }
   useEffect(() => {
     fetchProduct();
   }, [datas]);
@@ -19,9 +25,10 @@ const Body = (props) => {
   return (
     <div className="body">
       <div className="items">
+        <input onChange={(e)=>searchProduct(e)}className="search" placeholder="Search Product"/>
         <h1>{datas.toUpperCase()}</h1>
         <div className="meanu-list">
-          {products.map((product, index) => (
+          {products.filter((t)=>t.name.toLowerCase().includes(search.toLowerCase())).map((product, index) => (
             <Itemcard key={index} data={product} />
           ))}
         </div>

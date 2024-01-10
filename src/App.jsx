@@ -7,16 +7,18 @@ import axios from "axios";
 import Login from "./components/login";
 import Register from "./components/register";
 import Homebody from "./components/homebody";
+import AdminHome from "./components/adminpages/home";
+import AdminLogin from "./components/adminpages/login";
+import AdminRegister from "./components/adminpages/register";
+import {isLoggedIn} from "./auth";
 
 export const Context =React.createContext();
 function Home() {
  
   return (
     <>
-    
     <Head/>
     <Outlet/>
-    
     </>
   );
 }
@@ -46,6 +48,15 @@ const router =createBrowserRouter([
   },{
     path:"/register",
     element:<Register/>
+  },{
+    path:"/admin",
+    element:<AdminHome/>
+  },{
+    path:'/admin/login',
+    element:<AdminLogin/>
+  },{
+    path:'/admin/register',
+    element:<AdminRegister/>
   }
 ]);
 
@@ -54,16 +65,20 @@ const App=()=>{
   const [user,setUser]=useState();
 
   const fetchUser=async()=>{
+    if(isLoggedIn()){
       const user =await axios.get('api/user');
       setUser(user.data);
+    }
   }
+
 
 useEffect(()=>{
   fetchUser();
+  console.log();
 },[])
 
   return(
-  <Context.Provider value={{cart,setCart,fetchUser,user}}>
+  <Context.Provider value={{cart,setCart,fetchUser,user,setUser}}>
   <RouterProvider router={router}/>
   </Context.Provider>
   )

@@ -10,10 +10,8 @@ const navigate =useNavigate();
     if(user){
      await axios.put("api/user/addtocart", { _id: data._id });
     fetchUser();
-    console.log("c")
     }else{
       navigate("/login");
-      console.log("n")
     }
     
 };

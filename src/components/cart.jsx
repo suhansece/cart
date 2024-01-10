@@ -2,11 +2,16 @@ import Cartitemcard from "./cartitemcard";
 import { Context } from "../App";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
+import Bill from "./bill";
+import { useNavigate } from "react-router-dom";
+
 
 const Cart = () => {
   const { cart, setCart, user, fetchUser } = useContext(Context);
   const [total, setTotal] = useState(0);
   const [msg, setMsg] = useState();
+  const {setBill}=useContext(Context);
+  const navigate=useNavigate();
   const fetchProduct = async (data) => {
     try {
       const response = await axios.get(`api/product/${data.cartitems}`);
@@ -17,7 +22,10 @@ const Cart = () => {
   };
   const checkOut = async () => {
     try {
-      await axios.get("api/user/buy");
+     const data= await axios.get("api/user/buy");
+     console.log(data.data.data);
+      setBill(data.data.data);
+      navigate('/bill');
       fetchUser();
     } catch (error) {
       if (error.response && error.response.status === 400) {
@@ -27,6 +35,8 @@ const Cart = () => {
       }
     }
   };
+  
+  
   useEffect(() => {
     const calculateTotal = async () => {
       let newTotal = 0;

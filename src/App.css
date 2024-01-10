@@ -373,13 +373,13 @@ margin-top: 10px;
     height: fit-content;
     border-collapse: collapse;
 }
-table,tr,td{
+.admin-home table,.admin-home tr,.admin-home td{
     border: 2px solid var(--orange);
 }
-th{
+.admin-home th{
     padding: 5px;
 }
-thead{
+.admin-home thead{
     font-size: 20px;
     background-color:var(--orange);
     color: var(--white);
@@ -420,7 +420,40 @@ text-align: center;
     display: flex;
     align-items: center;
 }
-.img-input{
-    
+
+/* Bill */
+
+.bill{
+    margin: 15px;
+    width: 280px;
+    padding: 10px;
 }
+.bill-body th{
+   padding: 8px;
+}
+.bill-body td{
+    padding: 2px;
+ }
+ .bill-body th{
+    border-top: 2px black dashed;
+ }
+ .bill-body p{
+    margin-bottom: 5px;
+ }
+ .bill-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+ }
+ .bill-body .total{
+    align-self: flex-end;
+    border-top: 1px black dashed;
+    border-bottom: 1px black dashed;
+
+    padding: 5px;
+ }
+ .total-td{
+    text-align: end;
+    padding-right: 5px;
+ }
 

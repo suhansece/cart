@@ -11,6 +11,7 @@ import AdminHome from "./components/adminpages/home";
 import AdminLogin from "./components/adminpages/login";
 import AdminRegister from "./components/adminpages/register";
 import {isLoggedIn} from "./auth";
+import Bill from "./components/bill";
 
 export const Context =React.createContext();
 function Home() {
@@ -41,6 +42,9 @@ const router =createBrowserRouter([
     },{
       path:"/chocolate",
       element:<Body datas={'chocolate'}/>
+    },{
+      path:"/bill",
+      element:<Bill/>
     }] 
   },{
     path:"/login",
@@ -63,6 +67,7 @@ const router =createBrowserRouter([
 const App=()=>{
   const[cart,setCart]=useState(false);
   const [user,setUser]=useState();
+  const[bill,setBill]=useState();
 
   const fetchUser=async()=>{
     if(isLoggedIn()){
@@ -78,7 +83,7 @@ useEffect(()=>{
 },[])
 
   return(
-  <Context.Provider value={{cart,setCart,fetchUser,user,setUser}}>
+  <Context.Provider value={{cart,setCart,fetchUser,user,setUser,bill,setBill}}>
   <RouterProvider router={router}/>
   </Context.Provider>
   )

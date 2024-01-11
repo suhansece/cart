@@ -3,15 +3,12 @@ import Cart from "./cart";
 import Itemcard from "./itemcard";
 import axios from "axios";
 import { Context } from "../App";
-import { isLoggedIn } from "../auth";
-import { useNavigate } from "react-router-dom";
 
 const Body = (props) => {
   const [products, setProduct] = useState([]);
   const { cart } = useContext(Context);
   const [search,setSearch]=useState('')
   const {datas}=props;
-  const navigate =useNavigate();
   const fetchProduct = async () => {
     const data = await axios.get(`api/product/category/${datas}`);
     setProduct(data.data);
@@ -19,7 +16,6 @@ const Body = (props) => {
   };
   const searchProduct =(e)=>{
       setSearch(e.target.value);
-      console.log(search)
   }
   useEffect(() => {
     fetchProduct();

@@ -4,8 +4,8 @@ import { isLoggedIn } from "../../auth";
 import { useNavigate } from "react-router-dom";
 const AdminproductCard = (props) => {
   const { data, fetchProduct } = props;
-  const [updatedQuantity, setUpdatedQuantity] = useState("");
-  const [updatedPrice, setUpdatedPrice] = useState("");
+  const [updatedQuantity, setUpdatedQuantity] = useState(data.quantity);
+  const [updatedPrice, setUpdatedPrice] = useState(data.price);
 const navigate =useNavigate();
   const handleQuantityUpdate = async (e) => {
     e.preventDefault();
@@ -57,7 +57,7 @@ const navigate =useNavigate();
   return (
     <tr className="admin-product-card">
       <td className="card-img">
-        <img  src={data.image}/>
+        <img  src={data.image||"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/of4uydxfme5q5yqfoq1t"}/>
         {data.name}
       </td>
       <td>{data.category}</td>

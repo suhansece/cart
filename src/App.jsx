@@ -12,6 +12,10 @@ import AdminLogin from "./components/adminpages/login";
 import AdminRegister from "./components/adminpages/register";
 import {isLoggedIn} from "./auth";
 import Bill from "./components/bill";
+import AddProduct from "./components/adminpages/addProduct";
+import AdminProductList from "./components/adminpages/productList";
+import AddBalance from "./components/adminpages/addBalance";
+import AdminHistory from "./components/adminpages/history";
 
 export const Context =React.createContext();
 function Home() {
@@ -54,7 +58,23 @@ const router =createBrowserRouter([
     element:<Register/>
   },{
     path:"/admin",
-    element:<AdminHome/>
+    element:<AdminHome/>,
+    children:[
+      {
+        path:"/admin",
+        element:<AdminProductList/>
+      }
+      ,{
+      path:"/admin/addproduct",
+      element:<AddProduct/>
+    },{
+      path:"/admin/addMoney",
+      element:<AddBalance/>
+    },{
+      path:"/admin/history",
+      element:<AdminHistory/>
+    }
+      ]
   },{
     path:'/admin/login',
     element:<AdminLogin/>
@@ -68,11 +88,13 @@ const App=()=>{
   const[cart,setCart]=useState(false);
   const [user,setUser]=useState();
   const[bill,setBill]=useState();
+  const[cartCount,setCartCount]=useState(0);
 
   const fetchUser=async()=>{
     if(isLoggedIn()){
       const user =await axios.get('api/user');
       setUser(user.data);
+      setCartCount(user.data.cart.length);
     }
   }
 
@@ -83,7 +105,7 @@ useEffect(()=>{
 },[])
 
   return(
-  <Context.Provider value={{cart,setCart,fetchUser,user,setUser,bill,setBill}}>
+  <Context.Provider value={{cart,setCart,fetchUser,user,setUser,bill,setBill,cartCount,setCartCount}}>
   <RouterProvider router={router}/>
   </Context.Provider>
   )

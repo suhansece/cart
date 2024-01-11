@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 
 const Cart = () => {
-  const { cart, setCart, user, fetchUser } = useContext(Context);
+  const { cart, setCart, user, fetchUser,cartCount } = useContext(Context);
   const [total, setTotal] = useState(0);
   const [msg, setMsg] = useState();
   const {setBill}=useContext(Context);
@@ -73,7 +73,7 @@ const Cart = () => {
       <div className="checkout-details">
         <div className="sub-total">
           Sub-Total
-          <p>2 items</p>
+          <p>{cartCount} Items</p>
         </div>
         <div className="total-price">Rs:{total}</div>
         <button onClick={checkOut}>Checkout</button>

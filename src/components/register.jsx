@@ -74,7 +74,7 @@ const Register = () => {
             placeholder="Confirm Password"
             onChange={onChangeConfirmPassword}
           />
-        {error && <p style={{ color: "red" }}>{error}</p>}
+        {error && <p style={{ color: "red" }}>!{error}</p>}
         <button type="submit" onClick={submitForm}>
           Register
         </button>

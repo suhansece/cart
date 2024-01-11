@@ -34,7 +34,7 @@ const Login = () => {
       setTimeout(() => {
         navigate("/login")
         Cookies.remove('token')
-      }, "60000");
+      }, "300000");
     } catch (e) {
       setError(e.response.data.message);
     }

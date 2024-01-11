@@ -5,6 +5,7 @@
 }
 /* body{
     position: relative;
+     --orange:rgb(78, 78, 159);
 } */
 /* #FF8A00 */
 :root {
@@ -50,6 +51,7 @@
     height: 80px;
     text-decoration: none;
     color: var(--white);
+    text-align: center;
 }
 .nav-right .link:hover{
 background-color: black;
@@ -362,27 +364,28 @@ margin-top: 10px;
     height: 30px;
     border-radius: 25px;
     border: 2px solid var(--orange);
-    padding-left:10px
+    padding-left:10px;
+    margin: 5px;
 }
 .add-product {
-    width: 500px;
+    width: 100%;
     height: 100vh;
 }
-.admin-home{
-    display: flex;
+.admin-product-lists{
+    margin-top: 10px;
 }
-.admin-home table {
-    width: 80%;
+.admin-product-lists table {
+    width: 100%;
     height: fit-content;
     border-collapse: collapse;
 }
-.admin-home table,.admin-home tr,.admin-home td{
+.admin-product-lists table,.admin-product-lists tr,.admin-product-lists td{
     border: 2px solid var(--orange);
 }
-.admin-home th{
+.admin-product-lists th{
     padding: 5px;
 }
-.admin-home thead{
+.admin-product-lists thead{
     font-size: 20px;
     background-color:var(--orange);
     color: var(--white);
@@ -396,6 +399,7 @@ text-align: center;
     margin-top: 5px;
     border-top: 1px solid var(--orange);
     padding-top: 10px;
+    justify-content: center;
 }
 .update-product input{
     width: 70px;
@@ -469,5 +473,55 @@ text-align: center;
     padding: 5px;
     border: 0;
     border-radius: 10px;
+ }
+ .active-tab{
+    background-color: black;
+ }
+
+ .add-balance{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+ }
+ .find-user{
+    border: 1px solid var(--orange);
+    padding: 90px;
+    border-radius: 25px;
+    background-color: var(--orange);
+ }
+ .find-user div{
+    display: flex;
+ }
+ .find-user{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+ }
+ .find-user input{
+    height: 40px;
+    border: 0;
+    border-radius: 20px;
+    margin-top: 25px;
+    padding: 5px;
+    width: 100%;
+    font-size: 20px;
+ }
+ .find-user button{
+    height: 40px;
+    border: 0;
+    border-radius: 20px;
+    margin-top: 25px;
+    padding: 8px;
+    width: 100%;
+    margin-left: 20px;
+    background-color: rgb(65, 214, 65);
+    color: black;
+    font-size: 20px;
+ }
+ .find-user p{
+    font-size: 30px;
  }
 

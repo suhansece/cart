@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd());
-  const API_URL = `${env.VITE_API_URL}`;
+
 
   return {
     plugins: [react()],
@@ -15,7 +15,7 @@ export default defineConfig(({ mode }) => {
           secure: false,
         },
         '/admin/api': {
-          target: API_URL,
+          target: env.VITE_PROXY,
           changeOrigin: true,
           rewrite: (path) => path.replace('/admin', ''),
           secure: false,

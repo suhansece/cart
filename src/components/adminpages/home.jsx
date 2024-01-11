@@ -3,11 +3,10 @@ import AdminproductCard from "./productCard";
 import axios from "axios";
 import AddProduct from "./addProduct";
 import Cookies from "js-cookie";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const AdminHome = () => {
   const [products, setProduct] = useState([]);
-  const [search,setSearch]=useState('')
   const navigate=useNavigate()
 
   const fetchProduct = async () => {
@@ -15,10 +14,7 @@ const AdminHome = () => {
     setProduct(data.data);
     
   };
-  const searchProduct =(e)=>{
-      setSearch(e.target.value);
-      console.log(search)
-  }
+ 
   useEffect(() => {
     fetchProduct();
   }, []);

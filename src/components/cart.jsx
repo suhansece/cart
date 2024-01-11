@@ -1,8 +1,7 @@
-import Cartitemcard from "./cartitemcard";
+import Cartitemcard from "./cartitemcard.jsx";
 import { Context } from "../App";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import Bill from "./bill";
 import { useNavigate } from "react-router-dom";
 
 

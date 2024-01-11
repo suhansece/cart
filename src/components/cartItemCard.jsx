@@ -7,7 +7,7 @@ import { Context } from "../App";
 const Cartitemcard = (props) => {
   const { data } = props;
   const [product, setProduct] = useState();
-  const { fetchUser,user } = useContext(Context);
+  const { fetchUser } = useContext(Context);
   const fetchProduct = async () => {
     try {
       const response = await axios.get(`api/product/${data.cartitems}`);

@@ -1,12 +1,17 @@
 import axios from "axios";
 import { useState } from "react";
+import { isLoggedIn } from "../../auth";
+import { useNavigate } from "react-router-dom";
 const AdminproductCard = (props) => {
   const { data, fetchProduct } = props;
   const [updatedQuantity, setUpdatedQuantity] = useState("");
   const [updatedPrice, setUpdatedPrice] = useState("");
-
+const navigate =useNavigate();
   const handleQuantityUpdate = async (e) => {
     e.preventDefault();
+    if(!isLoggedIn()){
+      navigate('login');
+    }
     try {
       await axios.put(`api/product/setquantity/${data._id}`, {
         quantity: updatedQuantity,
@@ -21,6 +26,9 @@ const AdminproductCard = (props) => {
 
   const handlePriceUpdate = async (e) => {
     e.preventDefault();
+    if(!isLoggedIn()){
+      navigate('login');
+    }
     try {
       await axios.put(`api/product/updateprice/${data._id}`, {
         price: updatedPrice,
@@ -34,6 +42,9 @@ const AdminproductCard = (props) => {
   };
 
   const handleDelete = async () => {
+    if(!isLoggedIn()){
+      navigate('login');
+    }
     try {
       await axios.delete(`api/product/delete/${data._id}`);
       console.log("Product deleted successfully");

@@ -29,7 +29,8 @@ const Cart = () => {
       fetchUser();
     } catch (error) {
       if (error.response && error.response.status === 400) {
-        setMsg("Invalid Balance");
+        setMsg(error.response.data.message);
+        console.log(error)
       } else {
         console.error("Error fetching product:", error);
       }

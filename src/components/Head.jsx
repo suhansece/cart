@@ -12,6 +12,7 @@ import { Context } from "../App";
 import { useContext } from "react";
 import { Link,useNavigate } from "react-router-dom";
 import cookie from "js-cookie";
+import { isLoggedIn } from "../auth";
 
 
 const Head = () => {
@@ -68,7 +69,11 @@ const Head = () => {
       </div>
       {cart || (
         <div className="nav-cart-icon" onClick={()=>{
-          cart?setCart(false):setCart(true);
+          if(isLoggedIn()){
+            cart?setCart(false):setCart(true);
+          }else{
+            navigate('/login');
+          }
         }}>
           <FontAwesomeIcon className="icon" icon={faCartShopping} />
         </div>

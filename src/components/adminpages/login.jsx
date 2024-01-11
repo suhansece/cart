@@ -25,7 +25,7 @@ const AdminLogin = () => {
       return;
     }
     try {
-      await axios.post("api/user/login", { username: username,password: password,});
+      await axios.post("api/admin/login", { username: username,password: password});
       navigate("/admin")
       fetchUser()
       setPassword('')

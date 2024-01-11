@@ -2,6 +2,7 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { Context } from "../App";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -30,6 +31,10 @@ const Login = () => {
       fetchUser()
       setPassword('')
       setUsername('')
+      setTimeout(() => {
+        navigate("/login")
+        Cookies.remove('token')
+      }, "60000");
     } catch (e) {
       setError(e.response.data.message);
     }

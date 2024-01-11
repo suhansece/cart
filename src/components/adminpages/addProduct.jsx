@@ -1,7 +1,10 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { isLoggedIn } from '../../auth';
+import { useNavigate } from 'react-router-dom';
 
 const AddProduct = () => {
+  const navigate =useNavigate()
   const [productInfo, setProductInfo] = useState({
     name: '',
     category: '',
@@ -30,6 +33,9 @@ const AddProduct = () => {
 
   const submitForm = async (e) => {
     e.preventDefault();
+    if(!isLoggedIn()){
+      navigate('login');
+    }
     try {
       await axios.post('/api/product/add', productInfo);
       setProductInfo({

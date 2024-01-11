@@ -354,6 +354,9 @@ margin-top: 10px;
 .add-product .container input{
     margin-top: 10px;
 }
+.add-product .container{
+    border-radius: 0;
+}
 .search{
     width: 350px;
     height: 30px;
@@ -455,5 +458,16 @@ text-align: center;
  .total-td{
     text-align: end;
     padding-right: 5px;
+ }
+ .admin-logout{
+    position: fixed;
+    top: 20px;
+    right: 10px;
+    background-color: rgb(181, 56, 56);
+    color: var(--white);
+    height: 30px;
+    padding: 5px;
+    border: 0;
+    border-radius: 10px;
  }
 

@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const AdminLogin = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { fetchUser } = useContext(Context);
+  const { fetchUser ,setAdmin} = useContext(Context);
   const [error, setError] = useState(null);
 
   const navigate = useNavigate();
@@ -25,7 +25,8 @@ const AdminLogin = () => {
       return;
     }
     try {
-      await axios.post("api/admin/login", { username: username,password: password});
+      const admin=await axios.post("api/admin/login", { username: username,password: password});
+      setAdmin(admin.data.name)
       navigate("/admin")
       fetchUser()
       setPassword('')

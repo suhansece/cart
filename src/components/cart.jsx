@@ -9,7 +9,7 @@ const Cart = () => {
   const { cart, setCart, user, fetchUser,cartCount } = useContext(Context);
   const [total, setTotal] = useState(0);
   const [msg, setMsg] = useState();
-  const {setBill}=useContext(Context);
+  const {setBill,setNoti}=useContext(Context);
   const navigate=useNavigate();
   const fetchProduct = async (data) => {
     try {
@@ -22,7 +22,7 @@ const Cart = () => {
   const checkOut = async () => {
     try {
      const data= await axios.get("api/user/buy");
-     console.log(data.data.data);
+     setNoti('Order Purchased')
       setBill(data.data.data);
       navigate('/bill');
       fetchUser();

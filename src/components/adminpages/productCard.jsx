@@ -1,11 +1,13 @@
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { isLoggedIn } from "../../auth";
 import { useNavigate } from "react-router-dom";
+import { Context } from "../../App";
 const AdminproductCard = (props) => {
   const { data, fetchProduct } = props;
   const [updatedQuantity, setUpdatedQuantity] = useState(data.quantity);
   const [updatedPrice, setUpdatedPrice] = useState(data.price);
+  const {setNoti}=useContext(Context);
 const navigate =useNavigate();
   const handleQuantityUpdate = async (e) => {
     e.preventDefault();
@@ -16,12 +18,12 @@ const navigate =useNavigate();
       await axios.put(`api/product/setquantity/${data._id}`, {
         quantity: updatedQuantity,
       });
-      console.log("Updated Quantity:", updatedQuantity);
+      setNoti('Updated');
       fetchProduct();
     } catch (e) {
       console.error("Error updating quantity:", e);
     }
-    setUpdatedQuantity("");
+  
   };
 
   const handlePriceUpdate = async (e) => {
@@ -33,12 +35,12 @@ const navigate =useNavigate();
       await axios.put(`api/product/updateprice/${data._id}`, {
         price: updatedPrice,
       });
-      console.log("Updated Price:", updatedPrice);
+      setNoti('Updated');
       fetchProduct();
     } catch (e) {
       console.error("Error updating price:", e);
     }
-    setUpdatedPrice("");
+   
   };
 
   const handleDelete = async () => {

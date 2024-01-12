@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 
 const AddProduct = () => {
   const navigate =useNavigate()
+  const [error, setError] = useState(null);
+
   const [productInfo, setProductInfo] = useState({
     name: '',
     category: '',
@@ -36,14 +38,26 @@ const AddProduct = () => {
     if(!isLoggedIn()){
       navigate('login');
     }
+    if (
+      !productInfo.name ||
+      !productInfo.category ||
+      !productInfo.price ||
+      !productInfo.quantity ||
+      !productInfo.type ||
+      !productInfo.details ||
+      !productInfo.image
+    ) {
+      setError('Please fill in all fields');
+      return;
+    }
     try {
       await axios.post('/api/product/add', productInfo);
       setProductInfo({
         name: '',
-        category: 'food',
+        category: '',
         price: 0,
         quantity: 0,
-        type: 'veg',
+        type: '',
         details: '',
         image: '',
       });
@@ -65,8 +79,10 @@ const AddProduct = () => {
           />
           <select
             value={productInfo.category}
+            placeholder="Category"
             onChange={(e) => onChangeField('category', e.target.value)}
           >
+            <option value="">Category</option>
             <option value="food">Food</option>
             <option value="snacks">Snacks</option>
             <option value="chocolate">Chocolate</option>
@@ -86,8 +102,10 @@ const AddProduct = () => {
           />
           <select
             value={productInfo.type}
+           
             onChange={(e) => onChangeField('type', e.target.value)}
           >
+            <option value="">Type</option>
             <option value="veg">veg</option>
             <option value="Non-Veg">Non-Veg</option>
           </select>
@@ -102,9 +120,11 @@ const AddProduct = () => {
             onChange={onImageChange}
             className='img-input'
           />
+          {error && <p style={{ color: "red" }}>{error}</p>}
           <button type="submit" onClick={(e) => submitForm(e)}>
             Add Product
           </button>
+          
         </form>
       </div>
     </div>

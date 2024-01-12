@@ -1,5 +1,6 @@
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { Context } from "../../App";
 
 const AddBalance = () => {
   const [username, setUsername] = useState("");
@@ -7,7 +8,7 @@ const AddBalance = () => {
   const [amount, setAmount] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-
+const {setNoti}=useContext(Context);
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
   };
@@ -29,6 +30,7 @@ const AddBalance = () => {
       await axios.put(`api/user/addbalance/${username}`, { amount: Number(amount) });
       setUserData(null);
       setUsername("");
+      setNoti('Amount Added')
       setAmount(0);
     } catch (error) {
       console.log("Error adding balance", error);

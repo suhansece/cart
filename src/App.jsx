@@ -16,6 +16,7 @@ import AddProduct from "./components/adminpages/addProduct";
 import AdminProductList from "./components/adminpages/productList";
 import AddBalance from "./components/adminpages/addBalance";
 import AdminHistory from "./components/adminpages/history";
+import Notification from "./components/notification";
 
 export const Context =React.createContext();
 function Home() {
@@ -89,6 +90,8 @@ const App=()=>{
   const [user,setUser]=useState();
   const[bill,setBill]=useState();
   const[cartCount,setCartCount]=useState(0);
+  const[noti,setNoti]=useState('');
+  const [admin,setAdmin]=useState();
 
   const fetchUser=async()=>{
     if(isLoggedIn()){
@@ -105,8 +108,9 @@ useEffect(()=>{
 },[])
 
   return(
-  <Context.Provider value={{cart,setCart,fetchUser,user,setUser,bill,setBill,cartCount,setCartCount}}>
+  <Context.Provider value={{cart,setCart,fetchUser,admin,setAdmin,user,setUser,bill,setBill,cartCount,setCartCount,noti,setNoti}}>
   <RouterProvider router={router}/>
+  {noti&&<Notification message={noti} onClose={() => setNoti(null)}/>}
   </Context.Provider>
   )
 }

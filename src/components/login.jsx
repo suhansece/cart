@@ -9,6 +9,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const { fetchUser } = useContext(Context);
   const [error, setError] = useState(null);
+  const {setNoti}=useContext(Context);
 
   const navigate = useNavigate();
 
@@ -27,10 +28,12 @@ const Login = () => {
     }
     try {
       await axios.post("api/user/login", { username: username,password: password,});
+  
       navigate("/")
       fetchUser()
       setPassword('')
       setUsername('')
+      setNoti('Login success')
       setTimeout(() => {
         navigate("/login")
         Cookies.remove('token')

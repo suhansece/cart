@@ -8,24 +8,28 @@ import {
   faClipboardList,
 } from "@fortawesome/free-solid-svg-icons";
 import { Context } from "../../App";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Link,useNavigate } from "react-router-dom";
 import cookie from "js-cookie";
 import { isLoggedIn } from "../../auth";
 
 
 const AdminHead = () => {
-  const {user,setUser} = useContext(Context);
+
   const navigate=useNavigate();
   const logout = ()=>{
         cookie.remove("token");
-        setUser(null);
         navigate("login");
         window.location.reload()
   }
   const isActive = (path) => {
     return location.pathname === path;
   };
+  useEffect(()=>{
+    if(!isLoggedIn()){
+      navigate("admin/login")
+    }
+  },[])
   return (
     <div className="nav" >
       <h1 className="logo"></h1>
@@ -42,10 +46,10 @@ const AdminHead = () => {
         <FontAwesomeIcon className="icon" icon={faCreditCard} />
         <p>Add Balance</p>
       </Link>
-      <Link className={`link ${isActive('/admin/history') ? 'active-tab' : ''}`} to={'history'}>
+      {/* <Link className={`link ${isActive('/admin/history') ? 'active-tab' : ''}`} to={'history'}>
         <FontAwesomeIcon className="icon" icon={faClipboardList} />
         <p>Transaction History</p>
-      </Link>
+      </Link> */}
         {isLoggedIn()?(<div className="link" onClick={logout}>
           <button >
             <FontAwesomeIcon className="icon" icon={faRightFromBracket} />
@@ -61,7 +65,7 @@ const AdminHead = () => {
         <div className="link">
           <p className="user-name">
             <FontAwesomeIcon className="user-icon" icon={faUser} />
-            {user?(user.name):''}
+            admin
           </p>
         </div>
       </div>

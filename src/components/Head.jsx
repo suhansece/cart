@@ -15,13 +15,14 @@ import cookie from "js-cookie";
 import { isLoggedIn } from "../auth";
 
 const Head = () => {
-  const { cart, setCart, user, setUser, cartCount } = useContext(Context);
+  const { cart, setCart, user, setUser, cartCount,setNoti } = useContext(Context);
   const navigate = useNavigate();
   const logout = () => {
     cookie.remove("token");
     setUser(null);
     navigate("/login");
-    window.location.reload();
+    setNoti('Logouted')
+  
   };
   const isActive = (path) => {
     return location.pathname === path;

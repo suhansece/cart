@@ -412,6 +412,7 @@ form select {
 
 .add-product .container {
     border-radius: 0;
+    height: 610px;
 }
 
 .search {
@@ -425,7 +426,7 @@ form select {
 
 .add-product {
     width: 100%;
-    height: 100vh;
+    height: 100%;
 }
 
 .admin-product-lists {

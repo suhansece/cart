@@ -44,7 +44,7 @@ const Bill = () => {
         <p>
           Date:{data.date.slice(0, 10)} {data.date.slice(11, 19)}
         </p>
-        <p>No :154 </p>
+        <p>No :{data.billNo} </p>
       </div>
       <div className="bill-body">
         <p>Name:{data.name}</p>

@@ -7,6 +7,7 @@ import {
   faWineGlass,
   faCandyCane,
   faUser,
+  faHome,
 } from "@fortawesome/free-solid-svg-icons";
 import { Context } from "../App";
 import { useContext } from "react";

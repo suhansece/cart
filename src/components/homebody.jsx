@@ -3,12 +3,12 @@ import Cart from "./cart";
 import Itemcard from "./itemcard";
 import axios from "axios";
 import { Context } from "../App";
+
 const Homebody = () => {
   const [products, setProduct] = useState([]);
   const { cart } = useContext(Context);
-
   const fetchProduct = async () => {
-    const data = await axios.get("api/product");
+    const data = await axios.get(`${process.env.REACT_APP_URL}api/product`);
     setProduct(data.data);
   };
   useEffect(() => {

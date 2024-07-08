@@ -13,7 +13,7 @@ const Cart = () => {
   const navigate=useNavigate();
   const fetchProduct = async (data) => {
     try {
-      const response = await axios.get(`api/product/${data.cartitems}`);
+      const response = await axios.get(`${process.env.REACT_APP_URL}api/product/${data.cartitems}`);
       return response.data.price;
     } catch (error) {
       console.error("Error fetching product:", error);
@@ -21,7 +21,7 @@ const Cart = () => {
   };
   const checkOut = async () => {
     try {
-     const data= await axios.get("api/user/buy");
+     const data= await axios.get(`${process.env.REACT_APP_URL}api/user/buy`);
      setNoti('Order Purchased')
       setBill(data.data.data);
       navigate('/bill');

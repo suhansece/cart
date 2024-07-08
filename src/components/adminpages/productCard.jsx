@@ -15,7 +15,7 @@ const navigate =useNavigate();
       navigate('login');
     }
     try {
-      await axios.put(`api/product/setquantity/${data._id}`, {
+      await axios.put(`${process.env.REACT_APP_URL}api/product/setquantity/${data._id}`, {
         quantity: updatedQuantity,
       });
       setNoti('Updated');
@@ -32,7 +32,7 @@ const navigate =useNavigate();
       navigate('login');
     }
     try {
-      await axios.put(`api/product/updateprice/${data._id}`, {
+      await axios.put(`${process.env.REACT_APP_URL}api/product/updateprice/${data._id}`, {
         price: updatedPrice,
       });
       setNoti('Updated');
@@ -48,7 +48,7 @@ const navigate =useNavigate();
       navigate('login');
     }
     try {
-      await axios.delete(`api/product/delete/${data._id}`);
+      await axios.delete(`${process.env.REACT_APP_URL}api/product/delete/${data._id}`);
       console.log("Product deleted successfully");
       fetchProduct();
     } catch (e) {

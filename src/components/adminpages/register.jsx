@@ -40,7 +40,7 @@ const AdminRegister = () => {
       return;
     }
     try{
-      await axios.post('api/admin/register',{username,email,password})
+      await axios.post(`${process.env.REACT_APP_URL}api/admin/register`,{username,email,password})
       fetchUser();
       navigate('/admin')
       setUsername("");

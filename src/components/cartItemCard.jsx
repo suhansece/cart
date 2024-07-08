@@ -10,7 +10,7 @@ const Cartitemcard = (props) => {
   const { fetchUser } = useContext(Context);
   const fetchProduct = async () => {
     try {
-      const response = await axios.get(`api/product/${data.cartitems}`);
+      const response = await axios.get(`${process.env.REACT_APP_URL}api/product/${data.cartitems}`);
       setProduct(response.data);
     } catch (error) {
       console.error("Error fetching product:", error);
@@ -18,7 +18,7 @@ const Cartitemcard = (props) => {
   };
   const addToCartCount = async () => {
     if(data.noOfItems>1){
-    await axios.put(`api/user/addnoofitems/${data._id}`, {
+    await axios.put(`${process.env.REACT_APP_URL}api/user/addnoofitems/${data._id}`, {
       noOfItems: data.noOfItems - 1,
     });
   }else{
@@ -27,14 +27,14 @@ const Cartitemcard = (props) => {
     fetchUser();
   };
   const subToCartCount = async () => {
-    await axios.put(`api/user/addnoofitems/${data._id}`, {
+    await axios.put(`${process.env.REACT_APP_URL}api/user/addnoofitems/${data._id}`, {
       noOfItems: data.noOfItems + 1,
     });
     fetchUser();
   };
 
   const deleteitem=async ()=>{
-    await axios.put(`api/user/deletefromcart/${data.cartitems}`)
+    await axios.put(`${process.env.REACT_APP_URL}api/user/deletefromcart/${data.cartitems}`)
     fetchUser();
   }
   useEffect(() => {

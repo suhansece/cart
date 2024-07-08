@@ -16,7 +16,7 @@ const {setNoti}=useContext(Context);
   const handleFindDetails = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.get(`api/user/${username}`);
+      const response = await axios.get(`${process.env.REACT_APP_URL}api/user/${username}`);
       setUserData(response.data);
     } catch (error) {
       setError("Error fetching user details");

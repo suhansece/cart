@@ -10,7 +10,7 @@ const Body = (props) => {
   const [search,setSearch]=useState('')
   const {datas}=props;
   const fetchProduct = async () => {
-    const data = await axios.get(`api/product/category/${datas}`);
+    const data = await axios.get(`${process.env.REACT_APP_URL}api/product/category/${datas}`);
     setProduct(data.data);
     
   };

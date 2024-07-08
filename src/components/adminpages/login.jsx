@@ -25,7 +25,7 @@ const AdminLogin = () => {
       return;
     }
     try {
-      const admin=await axios.post("api/admin/login", { username: username,password: password});
+      const admin=await axios.post(`${process.env.REACT_APP_URL}api/admin/login`, { username: username,password: password});
       setAdmin(admin.data.name)
       navigate("/admin")
       fetchUser()

@@ -51,7 +51,7 @@ const AddProduct = () => {
       return;
     }
     try {
-      await axios.post('/api/product/add', productInfo);
+      await axios.post(`${process.env.REACT_APP_URL}/api/product/add`, productInfo);
       setProductInfo({
         name: '',
         category: '',

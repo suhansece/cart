@@ -45,7 +45,7 @@ const Register = () => {
       return;
     }
     try{
-      await axios.post('api/user/register',{name,username,email,password})
+      await axios.post(`${process.env.REACT_APP_URL}api/user/register`,{name,username,email,password})
       fetchUser();
       navigate('/login')
       setUsername("");

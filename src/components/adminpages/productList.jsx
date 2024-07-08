@@ -5,7 +5,7 @@ import AdminproductCard from "./productCard";
 const AdminProductList = () => {
   const [products, setProduct] = useState([]);
   const fetchProduct = async () => {
-    const data = await axios.get(`api/product`);
+    const data = await axios.get(`${process.env.REACT_APP_URL}api/product`);
     setProduct(data.data);
   };
   useEffect(() => {

@@ -27,7 +27,7 @@ const Login = () => {
       return;
     }
     try {
-      await axios.post("api/user/login", { username: username,password: password,});
+      await axios.post(`${process.env.REACT_APP_URL}api/user/login`, { username: username,password: password,});
   
       navigate("/")
       fetchUser()

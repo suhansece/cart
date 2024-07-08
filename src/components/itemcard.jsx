@@ -8,7 +8,7 @@ const Itemcard = (props) => {
 const navigate =useNavigate();
   const addToCart = async () => {
     if(user){
-     await axios.put("api/user/addtocart", { _id: data._id });
+     await axios.put(`${process.env.REACT_APP_URL}api/user/addtocart`, { _id: data._id });
     fetchUser();
     }else{
       navigate("/login");

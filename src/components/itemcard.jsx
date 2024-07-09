@@ -1,14 +1,22 @@
 import { useContext} from "react";
 import { Context } from "../App";
 import axios from "axios";
+import Cookies from 'js-cookie';
 import { useNavigate } from "react-router-dom";
+
 const Itemcard = (props) => {
   const { data } = props;
   const { fetchUser,user } = useContext(Context);
 const navigate =useNavigate();
   const addToCart = async () => {
     if(user){
-     await axios.put(`${process.env.REACT_APP_URL}api/user/addtocart`, { _id: data._id });
+      const token = Cookies.get('token');
+      console.log(token)
+     await axios.put(`${process.env.REACT_APP_URL}api/user/addtocart`, { _id: data._id },{
+        headers: {
+          Authorization: token
+        }
+     });
     fetchUser();
     }else{
       navigate("/login");

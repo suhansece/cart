@@ -27,8 +27,8 @@ const Login = () => {
       return;
     }
     try {
-      await axios.post(`${process.env.REACT_APP_URL}api/user/login`, { username: username,password: password,});
-  
+      const user = await axios.post(`${process.env.REACT_APP_URL}api/user/login`, { username: username,password: password,});
+      Cookies.set("token",user.data.token)
       navigate("/")
       fetchUser()
       setPassword('')
@@ -36,7 +36,7 @@ const Login = () => {
       setNoti('Login success')
       setTimeout(() => {
         navigate("/login")
-        Cookies.remove('token')
+        Cookies.remove('token');
       }, "300000");
     } catch (e) {
       setError(e.response.data.message);
@@ -51,6 +51,7 @@ const Login = () => {
             value={username}
             placeholder="UserName"
             onChange={onChangeusername}
+            autoFocus
           />
           <input
             value={password}
